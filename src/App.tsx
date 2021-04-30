@@ -20,10 +20,12 @@ const numeros=['1','2', '3', '4', '5', '6', '7', '8', '9', '0'];
 const [PrimeiroNumero, setPrimeiroNumero]=useState<string>('0');
 
 //Variavel da operação que sera realizada
-const [Operacao, setOperacao]=useState<'+'|'-'|'*'|'/'|''>('');
+const [Operacao, setOperacao]=useState<'+'|'-'|'*'|'/'|''|'%'>('');
 
 //variavel do historico
 const [HistoricoValor, setHistoricoValor] = useState < string > ('0');
+
+//const [Porcentagem, setPorcentagem] = useState <'%'>('0');
 
 //Função que insere os numeros na tela
 function inserirNumeros (numeroNovo:string){
@@ -83,6 +85,19 @@ function calcular() {
 
     //grava o resukltado da Subtração
     resultado=numeroInicial-numeroSecundario
+    console.log('primeiro numero', numeroInicial);
+    console.log('segundo numero', numeroSecundario);
+  }
+
+  //realiza a oparação de Porcentagem
+  if(Operacao=='%'){
+
+    //grava o resultado da porcentagem
+    resultado=  numeroInicial/100
+
+    console.log('primeiro numero', numeroInicial);
+    console.log('segundo numero', numeroSecundario);
+    
    
   }
 
@@ -125,7 +140,7 @@ function calcular() {
 } 
 
 //prepara as variaves para realizar o calculo
-function prepararCalculo (operador:'+'|'-'|'*'|'/'|''){
+function prepararCalculo (operador:'+'|'-'|'*'|'/'|'%'|''){
 
   //grava qual foi o primeiro numero digitado
   setPrimeiroNumero(visorValor) 
@@ -135,6 +150,8 @@ function prepararCalculo (operador:'+'|'-'|'*'|'/'|''){
 
   //Apaga o valor do visor para digitar o novo numero
   setvisorValor('')
+
+  //setPorcentagem (resultado)
 
   //Grava o valor do historico
   setHistoricoValor (HistoricoValor + operador)
@@ -225,6 +242,7 @@ function limparTela (){
         <Button className = 'operacao'Title = '-' onClick = {()=> prepararCalculo('-')}/>
         <Button className = 'operacao'Title = '*' onClick = {()=> prepararCalculo('*')}/>
         <Button className = 'operacao'Title = '/' onClick = {()=> prepararCalculo('/')}/>
+        <Button className = 'operacao'Title = '%' onClick = {()=> prepararCalculo('%')}/>
         <Button className = 'limpar' Title = 'Limpar' onClick={()=> limparTela ()}/>
         <Button className = 'igual' Title = '=' onClick = {()=> calcular()}/>
       
