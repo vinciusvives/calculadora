@@ -17,10 +17,10 @@ const [visorValor, setvisorValor] = useState<string>('0');
 const numeros=['1','2', '3', '4', '5', '6', '7', '8', '9', '0'];
 
 //Variavel do primento numento digitrado para primiera conta
-const [PrimeiroNumero, setPrimeiroNumero]=useState<string>('0');
+const [NumerosDigitados, setNumerosDigitados]=useState<Array<string>>([]);
 
 //Variavel da operação que sera realizada
-const [Operacao, setOperacao]=useState<'+'|'-'|'*'|'/'|''>('');
+const [Operacoes, setOperacoes]=useState<Array<'+'|'-'|'*'|'/'|''>>([]);
 
 //variavel do historico
 const [HistoricoValor, setHistoricoValor] = useState < string > ('0');
@@ -61,33 +61,54 @@ function ajustarNumero (numeroErrado:string){
   return numeroCorrigido
 }
 
-//realzia o calculo desejado
+//realzia os calculos desejados
 function calcular() {
 
+  //verifica se foi digitado a operação, tratamento de erro (length = tamanho)
+  if (Operacoes.length===0){
 
+    //limpar a tela 
+    setvisorValor('')
+    setHistoricoValor('')
 
-  //Ajustar o primeiro numero da conta
-  const numeroInicial = ajustarNumero (PrimeiroNumero);
+    //Mostra para o usuario um erro em POP-up 
+    window.alert ('Nenhuma operação selecioada!')
 
-  //Ajusta o segundo numero da conta
-  const numeroSecundario = ajustarNumero (visorValor);
-
+    //Sai da função para não realizar o resto do codigo
+    return
+  
+  }
   //Inicar a variavel que guarda o resultado do calculo
-  let resultado = 0;
+  let resultado = ajustarNumero(NumerosDigitados[0]);
+
+  //realisando a conta para cada numero digitado
+  NumerosDigitados.forEach((x:string, index:number)=>{
+
+  //armazena o resutlado anterior 
+  const NumeroInicial = (resultado) ;
+
+   //Faz uma comparação para o proximo numero digitado 
+  const SegundoNumero = (index+1===NumerosDigitados.length) ? visorValor: NumerosDigitados[index+1]
+
+    //Ajusta o segundo numero da conta
+  const numeroSecundario = ajustarNumero (SegundoNumero);
+
+   //pega a operacao da lista 
+  const OperacaoAtual = Operacoes[index]
 
   //realiza a oparação de Adição
-  if(Operacao=='+'){
+  if(OperacaoAtual=='+'){
 
     //grava o resukltado da Adição
-    resultado=numeroInicial+numeroSecundario
+    resultado=NumeroInicial+numeroSecundario
   }
 
   //realiza a oparação de Subtração
-  if(Operacao=='-'){
+  if(OperacaoAtual=='-'){
 
     //grava o resukltado da Subtração
-    resultado=numeroInicial-numeroSecundario
-    console.log('primeiro numero', numeroInicial);
+    resultado=NumeroInicial-numeroSecundario
+    console.log('primeiro numero', NumeroInicial);
     console.log('segundo numero', numeroSecundario);
   }
 
@@ -104,33 +125,24 @@ function calcular() {
   //}
 
   //realiza a oparação de Multiplicação
-  if(Operacao=='*'){
+  if(OperacaoAtual=='*'){
 
     //grava o resukltado da Multiplicação
-    resultado=numeroInicial*numeroSecundario
+    resultado=NumeroInicial*numeroSecundario
   }
 
   //realiza a oparação de Divisão
-  if(Operacao=='/'){
+  if(OperacaoAtual=='/'){
 
     //grava o resukltado da Divisão
-    resultado=numeroInicial/numeroSecundario
+    resultado=NumeroInicial/numeroSecundario
   
   }
-  //tratamento de erro caso não tenha nenhuma oparação selecionada
-  if (Operacao == ''){
+  
+  
+  })//final do forEach
 
-    //traz o resultado como 0
-    resultado = 0
-
-    //Mostra para o usuario um erro em POP-up 
-    window.alert ('Nenhuma operação selecioada!')
-
-    //Sai da função para não realizar o resto do codigo
-    return
-  }
-
-  //Ajusta o resultado do calculo adicionado a viirgula no lugar 
+  //Ajusta o resultado do calculo adicionado a virgula no lugar 
   //do ponto
   const resultadoFinal = resultado.toString().replaceAll('.', ',')
 
@@ -139,11 +151,15 @@ function calcular() {
 
   //grava o valor no Historico
   setHistoricoValor (HistoricoValor+'='+resultadoFinal)
+
+  
 } 
 //Realiza o calculo da porcentagem
 function calculoPorcentagem (){
   //Ajusta o primeiro numero da conta porcentagem
-  const numeroInicial = ajustarNumero (PrimeiroNumero);
+  //sendo esse numero o ultimo digitado 
+  //ex: (NumerosDigitados[NumerosDigitados.length-1]); length - 1 busca o ultimo numero
+  const numeroInicial = ajustarNumero (NumerosDigitados[NumerosDigitados.length-1]);
 
   //Ajusta o segundo numero da conta porcentagem
   const numeroSecundario = ajustarNumero (visorValor);
@@ -165,16 +181,14 @@ function calculoPorcentagem (){
 //prepara as variaves para realizar o calculo
 function prepararCalculo (operador:'+'|'-'|'*'|'/'|''){
 
-  //grava qual foi o primeiro numero digitado
-  setPrimeiroNumero(visorValor) 
+  //cria uma lista de numeros digitados(...)pega todos os valores da lista
+  setNumerosDigitados([...NumerosDigitados,visorValor]) 
 
-  //Grava a operação escolhida
-  setOperacao(operador)
+  //cria uma lista com as operações digitadas
+  setOperacoes([...Operacoes, operador])
 
   //Apaga o valor do visor para digitar o novo numero
   setvisorValor('')
-
-  //setPorcentagem (resultado)
 
   //Grava o valor do historico
   setHistoricoValor (HistoricoValor + operador)
@@ -204,14 +218,14 @@ function limparTela (){
   //limpa o valor do visor
   setvisorValor ('')
 
-  //limpa o valor da oepração selecioanda
-  setOperacao ('')
+  //limpa o valor da lista de operaçoes selecioandas trazendo vazia
+  setOperacoes ([])
 
   ////limpa o valor do historico
   setHistoricoValor ('')
 
-  //limpa o valor di primeiro numero do calculo
-  setPrimeiroNumero ('')
+  //limpa o valor da lista dos  numeros digitados trazendo vazio
+  setNumerosDigitados ([])
 }
 //exibe o App
   return (
