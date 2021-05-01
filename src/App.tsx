@@ -20,7 +20,7 @@ const numeros=['1','2', '3', '4', '5', '6', '7', '8', '9', '0'];
 const [PrimeiroNumero, setPrimeiroNumero]=useState<string>('0');
 
 //Variavel da operação que sera realizada
-const [Operacao, setOperacao]=useState<'+'|'-'|'*'|'/'|''|'%'>('');
+const [Operacao, setOperacao]=useState<'+'|'-'|'*'|'/'|''>('');
 
 //variavel do historico
 const [HistoricoValor, setHistoricoValor] = useState < string > ('0');
@@ -64,6 +64,8 @@ function ajustarNumero (numeroErrado:string){
 //realzia o calculo desejado
 function calcular() {
 
+
+
   //Ajustar o primeiro numero da conta
   const numeroInicial = ajustarNumero (PrimeiroNumero);
 
@@ -90,16 +92,16 @@ function calcular() {
   }
 
   //realiza a oparação de Porcentagem
-  if(Operacao=='%'){
+  //if(Operacao=='%'){
 
     //grava o resultado da porcentagem
-    resultado=  numeroInicial/100
+  //  resultado=  numeroInicial + numeroSecundario/100
 
-    console.log('primeiro numero', numeroInicial);
-    console.log('segundo numero', numeroSecundario);
+  //  console.log('primeiro numero', numeroInicial);
+  //  console.log('segundo numero', numeroSecundario);
     
    
-  }
+  //}
 
   //realiza a oparação de Multiplicação
   if(Operacao=='*'){
@@ -138,9 +140,30 @@ function calcular() {
   //grava o valor no Historico
   setHistoricoValor (HistoricoValor+'='+resultadoFinal)
 } 
+//Realiza o calculo da porcentagem
+function calculoPorcentagem (){
+  //Ajusta o primeiro numero da conta porcentagem
+  const numeroInicial = ajustarNumero (PrimeiroNumero);
+
+  //Ajusta o segundo numero da conta porcentagem
+  const numeroSecundario = ajustarNumero (visorValor);
+
+  //faz a conta da porcentagem (x% de Y) onde Y Inicial e x nº visor
+  let resultado = numeroInicial*numeroSecundario/100;
+
+  //Ajusta o resultado do calculo adicionado a viirgula no lugar 
+  //do ponto
+  const resultadoFinal = resultado.toString().replaceAll('.', ',')
+ 
+ //grava o valor resultado final no visor
+  setvisorValor(resultadoFinal)
+  setHistoricoValor(HistoricoValor + '%(='+resultadoFinal+')')
+}
+
+
 
 //prepara as variaves para realizar o calculo
-function prepararCalculo (operador:'+'|'-'|'*'|'/'|'%'|''){
+function prepararCalculo (operador:'+'|'-'|'*'|'/'|''){
 
   //grava qual foi o primeiro numero digitado
   setPrimeiroNumero(visorValor) 
@@ -242,7 +265,7 @@ function limparTela (){
         <Button className = 'operacao'Title = '-' onClick = {()=> prepararCalculo('-')}/>
         <Button className = 'operacao'Title = '*' onClick = {()=> prepararCalculo('*')}/>
         <Button className = 'operacao'Title = '/' onClick = {()=> prepararCalculo('/')}/>
-        <Button className = 'operacao'Title = '%' onClick = {()=> prepararCalculo('%')}/>
+        <Button className = 'operacao'Title = '%' onClick = {()=> calculoPorcentagem()}/>
         <Button className = 'limpar' Title = 'Limpar' onClick={()=> limparTela ()}/>
         <Button className = 'igual' Title = '=' onClick = {()=> calcular()}/>
       
