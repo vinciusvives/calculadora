@@ -4,6 +4,8 @@ import './App.css';
 import { Button } from './components/Button';
 import { Visor } from './components/Visor';
 import { Historico } from './components/Historico';
+import { specialChars } from '@testing-library/user-event';
+import { LineAndCharacter } from 'typescript';
 
 //cria componente como o nome "App"
 const App: React.FC = () => {
@@ -19,6 +21,8 @@ const App: React.FC = () => {
 
   //Variavel da operação que sera realizada
   const [Operacoes, setOperacoes] = useState<Array<'+' | '-' | '*' | '/' | ''>>([]);
+
+  //const [OperacoesDigitados, setOperacoesDigitados] = useState<Array<string>>([]);
 
   //variavel do historico
   const [HistoricoValor, setHistoricoValor] = useState<string>('0');
@@ -134,6 +138,76 @@ const App: React.FC = () => {
     setHistoricoValor(HistoricoValor + '=' + resultadoFinal)
   }
 
+
+  function calcular2() { //pode ser usado as mesmas variaveis usadas no calculo1, cada escopo '{}' é independe um do outro.
+
+    if (Operacoes.length === 0) {
+
+      //limpar a tela 
+      setvisorValor('')
+      setHistoricoValor('')
+
+      //Mostra para o usuario um erro em POP-up 
+      window.alert('Nenhuma operação selecioada!')
+
+      //Sai da função para não realizar o resto do codigo
+      return
+
+    }
+    //Inicar a variavel que guarda o resultado do calculo
+    let resultado = ajustarNumero(NumerosDigitados[0]);
+
+    Operacoes.forEach((operacaoAtual: string, index: number) => {
+
+      
+      //armazena o resutlado anterior 
+      const NumeroInicial = (resultado);
+      //Ajusta o segundo numero da conta
+       //Faz uma comparação para o proximo numero digitado 
+       const SegundoNumero = (index + 1 === NumerosDigitados.length) ? visorValor : NumerosDigitados[index + 1]
+
+      const numeroSecundario = ajustarNumero(SegundoNumero);
+
+      //realiza a oparação de Adição
+      if (operacaoAtual == '+') {
+
+        //grava o resukltado da Adição
+        resultado = NumeroInicial + numeroSecundario
+      }
+
+      //realiza a oparação de Subtração
+      if (operacaoAtual == '-') {
+
+        //grava o resukltado da Subtração
+        resultado = NumeroInicial - numeroSecundario
+        console.log('primeiro numero', NumeroInicial);
+        console.log('segundo numero', numeroSecundario);
+      }
+
+      //realiza a oparação de Multiplicação
+      if (operacaoAtual == '*') {
+
+        //grava o resukltado da Multiplicação
+        resultado = NumeroInicial * numeroSecundario
+      }
+
+      //realiza a oparação de Divisão
+      if (operacaoAtual == '/') {
+
+        //grava o resukltado da Divisão
+        resultado = NumeroInicial / numeroSecundario
+      }  
+
+    })
+
+    const resultadoFinal = resultado.toString().replaceAll('.', ',')
+    setvisorValor(resultadoFinal)
+
+    //grava o valor no Historico
+    setHistoricoValor(HistoricoValor + '=' + resultadoFinal)
+
+  }
+
   //Realiza o calculo da porcentagem
   function calculoPorcentagem() {
     //Ajusta o primeiro numero da conta porcentagem
@@ -210,7 +284,7 @@ const App: React.FC = () => {
     <div className="App">
       <header className="App-header">
         <p>
-          CALCULADORA DO VINI
+          CALCULADORA DO VINI 
         </p>
 
         {/*Cria caixa delimita o histrico e visor */}
@@ -247,8 +321,8 @@ const App: React.FC = () => {
         <Button className='operacao' Title='*' onClick={() => prepararCalculo('*')} />
         <Button className='operacao' Title='/' onClick={() => prepararCalculo('/')} />
         <Button className='operacao' Title='%' onClick={() => calculoPorcentagem()} />
-        <Button className='limpar' Title='Limpar' onClick={() => limparTela()} />
-        <Button className='igual' Title='=' onClick={() => calcular()} />
+        <Button className='C' Title='C' onClick={() => limparTela()} />
+        <Button className='igual' Title='=' onClick={() => calcular2()} />
       </div>
     </div>
   );

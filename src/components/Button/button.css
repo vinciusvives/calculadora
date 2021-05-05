@@ -5,13 +5,13 @@
   flex:auto;
 }
 
-.limpar{
+.C{
   color: #fff;
   background-color: rgb(253, 2, 2);
   border: 1px solid rgb(41, 169, 219);
   border-radius: 5px;
 }
-.limpar:hover{
+.C:hover{
   background-color: rgb(180, 178, 182);
   transition-duration: 0.5s;
  
