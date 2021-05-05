@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import './visor.css'
+import { CaixaVisor } from './styles';
+
 
 interface IProps{
   valor:string;
@@ -51,9 +52,9 @@ export const Visor:React.FC < IProps > = ({valor,setValor})=> {
 
   //Exibe o Visor
   return(
-    <p className = 'App-visor' id='Visor'>
+    <CaixaVisor id='Visor'>
            {valor}
-    </p>
+    </CaixaVisor>
   );
 
     

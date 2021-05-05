@@ -1,11 +1,9 @@
 //Importando as Bibliotecas
 import React, { useState } from 'react';
-import './App.css';
 import { Button } from './components/Button';
 import { Visor } from './components/Visor';
 import { Historico } from './components/Historico';
-import { specialChars } from '@testing-library/user-event';
-import { LineAndCharacter } from 'typescript';
+import { AppHeader, ButtonContainer, CaixaApp, CaixaTexto } from './styles';
 
 //cria componente como o nome "App"
 const App: React.FC = () => {
@@ -281,14 +279,14 @@ const App: React.FC = () => {
 
   //exibe o App
   return (
-    <div className="App">
-      <header className="App-header">
+    <CaixaApp>
+      <AppHeader>
         <p>
           CALCULADORA DO VINI 
         </p>
 
         {/*Cria caixa delimita o histrico e visor */}
-        <div className='caixa-texto'>
+        <CaixaTexto>
 
           {/*Exibe o histrico passando 'historico valor' como valor do historico */}
           <Historico valor={HistoricoValor} setvalor={setHistoricoValor} />
@@ -297,9 +295,9 @@ const App: React.FC = () => {
           <Visor valor={visorValor} setValor={setvisorValor} />
 
           {/*final da caixa que delimita o historico e visor*/}
-        </div>
-      </header>
-      <div className='Button-container '//Criando o container com os botões
+        </CaixaTexto>
+      </AppHeader>
+      <ButtonContainer //Criando o container com os botões
       >
         {numeros.map((x: string, index: number) => {
           //a função Map executa um bloco de codigo para cada
@@ -323,8 +321,8 @@ const App: React.FC = () => {
         <Button className='operacao' Title='%' onClick={() => calculoPorcentagem()} />
         <Button className='C' Title='C' onClick={() => limparTela()} />
         <Button className='igual' Title='=' onClick={() => calcular2()} />
-      </div>
-    </div>
+      </ButtonContainer>
+    </CaixaApp>
   );
 }
 

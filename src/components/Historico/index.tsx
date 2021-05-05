@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './historico.css'
+import { CaixaHistorico } from './styles';
 
 interface IProps{
     valor:string;
@@ -44,10 +44,10 @@ useEffect(()=>{
 
 //Exibe o Historico
 return(
-      <p className='App-historico' id='Historico'>
+      <CaixaHistorico id='Historico'>
 
         {valor}
-      </p>
+      </CaixaHistorico>
 );
 
 }
