@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Button } from './components/Button';
 import { Visor } from './components/Visor';
 import { Historico } from './components/Historico';
-import { AppHeader, ButtonContainer, CaixaApp, CaixaTexto } from './styles';
+import { AppHeader, ButtonAppTitle, ButtonContainer, CaixaApp, CaixaTexto } from './styles';
 
 //cria componente como o nome "App"
 const App: React.FC = () => {
@@ -281,9 +281,9 @@ const App: React.FC = () => {
   return (
     <CaixaApp>
       <AppHeader>
-        <p>
+        <ButtonAppTitle>
           CALCULADORA DO VINI 
-        </p>
+        </ButtonAppTitle>
 
         {/*Cria caixa delimita o histrico e visor */}
         <CaixaTexto>

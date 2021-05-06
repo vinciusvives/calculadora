@@ -44,3 +44,18 @@ export const CaixaApp = styled.div`
 text-align:left ;
 background-color: #282c34;
 `;
+
+export const ButtonAppTitle = styled.p`
+display: inline-block;
+text-shadow: 2px 2px 5px black;
+border-radius: 4px;
+padding: 0.5rem 1rem;
+margin: 0.5rem 1rem;
+background: white;
+color: white;
+border: 2px solid white;
+color: rgb(88, 228, 24);
+font-size: 30px;
+text-align: center;
+margin-top: 4px;
+`
