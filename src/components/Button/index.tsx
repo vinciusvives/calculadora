@@ -1,20 +1,22 @@
 import React from 'react';
-import './button.css'
+import { CaixaBotao } from './styles';
+
 
 
 
 interface IProps {
   Title: string;
   onClick:any;
-  className? : string ;  
+  className? : string ; 
+  tipo:'igual'| 'C' | 'operacao' | 'virgula' | 'numeros'
 }
 export const Button: React.FC<IProps>=({
-  Title, onClick, className }) => {
+  Title, onClick, className , tipo}) => {
   return (
-    <button className= {'app-button '+className} onClick={onClick} >
+    <CaixaBotao tipo={tipo} onClick={onClick} >
     
       {Title}{onClick}
-    </button>
+    </CaixaBotao>
    
   )
   

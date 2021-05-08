@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Button } from './components/Button';
 import { Visor } from './components/Visor';
 import { Historico } from './components/Historico';
-import { AppHeader, ButtonAppTitle, ButtonContainer, CaixaApp, CaixaTexto } from './styles';
+import { AppHeader, AppTitle, ButtonContainer, CaixaApp, CaixaTexto } from './styles';
 
 //cria componente como o nome "App"
 const App: React.FC = () => {
@@ -281,9 +281,9 @@ const App: React.FC = () => {
   return (
     <CaixaApp>
       <AppHeader>
-        <ButtonAppTitle>
+        <AppTitle>
           CALCULADORA DO VINI 
-        </ButtonAppTitle>
+        </AppTitle>
 
         {/*Cria caixa delimita o histrico e visor */}
         <CaixaTexto>
@@ -306,21 +306,21 @@ const App: React.FC = () => {
           //X = cada item da lista 'Numeros', um de cada vez em ordem.
           return (
             <Button
-              className='numeros'
+              tipo = 'numeros'
               Title={x}
               onClick={() => inserirNumeros(x)} />
           );
         })}
 
         {/*cria os diversos botões de ação da calculadora */}
-        <Button className='virgula' Title=',' onClick={() => inserirVirgula()} />
-        <Button className='operacao' Title='+' onClick={() => prepararCalculo('+')} />
-        <Button className='operacao' Title='-' onClick={() => prepararCalculo('-')} />
-        <Button className='operacao' Title='*' onClick={() => prepararCalculo('*')} />
-        <Button className='operacao' Title='/' onClick={() => prepararCalculo('/')} />
-        <Button className='operacao' Title='%' onClick={() => calculoPorcentagem()} />
-        <Button className='C' Title='C' onClick={() => limparTela()} />
-        <Button className='igual' Title='=' onClick={() => calcular2()} />
+        <Button tipo = 'virgula' Title=',' onClick={() => inserirVirgula()} />
+        <Button tipo = 'operacao' Title='+' onClick={() => prepararCalculo('+')} />
+        <Button tipo = 'operacao' Title='-' onClick={() => prepararCalculo('-')} />
+        <Button tipo = 'operacao' Title='*' onClick={() => prepararCalculo('*')} />
+        <Button tipo = 'operacao' Title='/' onClick={() => prepararCalculo('/')} />
+        <Button tipo = 'operacao' Title='%' onClick={() => calculoPorcentagem()} />
+        <Button tipo = 'C'  Title='C' onClick={() => limparTela()} />
+        <Button tipo = 'igual'  Title='=' onClick={() => calcular2()} />
       </ButtonContainer>
     </CaixaApp>
   );
