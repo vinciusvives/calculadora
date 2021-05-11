@@ -314,11 +314,11 @@ const App: React.FC = () => {
 
         {/*cria os diversos botões de ação da calculadora */}
         <Button tipo = 'virgula' Title=',' onClick={() => inserirVirgula()} />
-        <Button tipo = 'operacao' Title='+' onClick={() => prepararCalculo('+')} />
-        <Button tipo = 'operacao' Title='-' onClick={() => prepararCalculo('-')} />
-        <Button tipo = 'operacao' Title='*' onClick={() => prepararCalculo('*')} />
-        <Button tipo = 'operacao' Title='/' onClick={() => prepararCalculo('/')} />
-        <Button tipo = 'operacao' Title='%' onClick={() => calculoPorcentagem()} />
+        <Button tipo = 'somar' Title='+' onClick={() => prepararCalculo('+')} />
+        <Button tipo = 'subtrair' Title='-' onClick={() => prepararCalculo('-')} />
+        <Button tipo = 'multiplicar' Title='*' onClick={() => prepararCalculo('*')} />
+        <Button tipo = 'dividir' Title='/' onClick={() => prepararCalculo('/')} />
+        <Button tipo = 'porcentagem' Title='%' onClick={() => calculoPorcentagem()} />
         <Button tipo = 'C'  Title='C' onClick={() => limparTela()} />
         <Button tipo = 'igual'  Title='=' onClick={() => calcular2()} />
       </ButtonContainer>

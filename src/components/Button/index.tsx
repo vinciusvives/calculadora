@@ -8,7 +8,7 @@ interface IProps {
   Title: string;
   onClick:any;
   className? : string ; 
-  tipo:'igual'| 'C' | 'operacao' | 'virgula' | 'numeros'
+  tipo:'igual'| 'C' | 'operacao' | 'virgula' | 'numeros'| 'somar'| 'dividir'|'multiplicar'|'subtrair'| 'porcentagem'
 }
 export const Button: React.FC<IProps>=({
   Title, onClick, className , tipo}) => {
