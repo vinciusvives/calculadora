@@ -143,13 +143,17 @@ const cores = {
   height: 30px;
   border: 2px;
   border-radius: 4px;
-  transition: .6s;
+  //transition: .6s;
   overflow: hidden;
+  transition-duration: 1s;
   
   &:hover{
-  background: #338033;
+  //background: #338033;
   cursor: pointer;
   color: #fff;
+  background: rgb(0,36,4);
+  background: linear-gradient(90deg, rgba(0,36,4,1) 0%, rgba(24,121,9,1) 35%, rgba(10,255,0,1) 100%);
+  transition-duration: 1s;
   }
   &:active{
     background-color: #fff;
@@ -175,13 +179,14 @@ const cores = {
   //height: 30px;
   //border: 2px;
   //border-radius: 4px;
-  //transition: .6s;
+  transition-duration: 0.6s;
   //overflow: hidden;
   
   &:hover{
   background: #338033;
   cursor: pointer;
   color: #fff;
+  
   }
   &:active{
     background-color: #fff;

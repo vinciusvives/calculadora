@@ -4,9 +4,13 @@ import { Button } from './components/Button';
 import { Visor } from './components/Visor';
 import { Historico } from './components/Historico';
 import { AppHeader, AppTitle, ButtonContainer, CaixaApp, CaixaTexto } from './styles';
+import { Alerta } from './components/Alerta';
 
 //cria componente como o nome "App"
 const App: React.FC = () => {
+
+// variavel que armazena o tipo de erro
+const [Erro, setErro] = useState('')
 
   //Variavel do Visor 
   const [visorValor, setvisorValor] = useState<string>('0');
@@ -39,7 +43,7 @@ const App: React.FC = () => {
   function ajustarNumero(numeroErrado: string) {
 
     //se não tiver digitado nada tratar como 0
-    if (numeroErrado == '') {
+    if (numeroErrado == '' || numeroErrado=== ',') {
 
       //retorna o valor 0
       return 0
@@ -138,7 +142,7 @@ const App: React.FC = () => {
 
 
   function calcular2() { //pode ser usado as mesmas variaveis usadas no calculo1, cada escopo '{}' é independe um do outro.
-
+    setErro('')
     if (Operacoes.length === 0) {
 
       //limpar a tela 
@@ -146,7 +150,7 @@ const App: React.FC = () => {
       setHistoricoValor('')
 
       //Mostra para o usuario um erro em POP-up 
-      window.alert('Nenhuma operação selecioada!')
+      setErro('Nenhuma operação selecioada!')
 
       //Sai da função para não realizar o resto do codigo
       return
@@ -191,9 +195,14 @@ const App: React.FC = () => {
 
       //realiza a oparação de Divisão
       if (operacaoAtual == '/') {
+        if (numeroSecundario == 0){
+          setErro('Erro! Proibido dividir por 0.')
+          return;
+        }
 
         //grava o resukltado da Divisão
         resultado = NumeroInicial / numeroSecundario
+        
       }  
 
     })
@@ -208,6 +217,11 @@ const App: React.FC = () => {
 
   //Realiza o calculo da porcentagem
   function calculoPorcentagem() {
+    setErro ('');
+    if (NumerosDigitados.length === 0){
+      setErro ('Operação Invalida');
+      return;
+    }
     //Ajusta o primeiro numero da conta porcentagem
     //sendo esse numero o ultimo digitado 
     //ex: (NumerosDigitados[NumerosDigitados.length-1]); length - 1 busca o ultimo numero
@@ -263,6 +277,8 @@ const App: React.FC = () => {
 
   //Limpa o valor das variaves 
   function limparTela() {
+    //Limpa a tela de erro 
+    setErro('')
 
     //limpa o valor do visor
     setvisorValor('')
@@ -284,6 +300,10 @@ const App: React.FC = () => {
         <AppTitle>
           CALCULADORA DO VINI 
         </AppTitle>
+
+        <Alerta tipo='danger'>
+          {Erro}
+        </Alerta>
 
         {/*Cria caixa delimita o histrico e visor */}
         <CaixaTexto>
