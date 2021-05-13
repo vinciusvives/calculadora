@@ -9,8 +9,8 @@ import { Alerta } from './components/Alerta';
 //cria componente como o nome "App"
 const App: React.FC = () => {
 
-// variavel que armazena o tipo de erro
-const [Erro, setErro] = useState('')
+  // variavel que armazena o tipo de erro
+  const [Erro, setErro] = useState('')
 
   //Variavel do Visor 
   const [visorValor, setvisorValor] = useState<string>('0');
@@ -43,7 +43,7 @@ const [Erro, setErro] = useState('')
   function ajustarNumero(numeroErrado: string) {
 
     //se não tiver digitado nada tratar como 0
-    if (numeroErrado == '' || numeroErrado=== ',') {
+    if (numeroErrado == '' || numeroErrado === ',') {
 
       //retorna o valor 0
       return 0
@@ -161,12 +161,12 @@ const [Erro, setErro] = useState('')
 
     Operacoes.forEach((operacaoAtual: string, index: number) => {
 
-      
+
       //armazena o resutlado anterior 
       const NumeroInicial = (resultado);
       //Ajusta o segundo numero da conta
-       //Faz uma comparação para o proximo numero digitado 
-       const SegundoNumero = (index + 1 === NumerosDigitados.length) ? visorValor : NumerosDigitados[index + 1]
+      //Faz uma comparação para o proximo numero digitado 
+      const SegundoNumero = (index + 1 === NumerosDigitados.length) ? visorValor : NumerosDigitados[index + 1]
 
       const numeroSecundario = ajustarNumero(SegundoNumero);
 
@@ -195,15 +195,15 @@ const [Erro, setErro] = useState('')
 
       //realiza a oparação de Divisão
       if (operacaoAtual == '/') {
-        if (numeroSecundario == 0){
+        if (numeroSecundario == 0) {
           setErro('Erro! Proibido dividir por 0.')
           return;
         }
 
         //grava o resukltado da Divisão
         resultado = NumeroInicial / numeroSecundario
-        
-      }  
+
+      }
 
     })
 
@@ -213,13 +213,18 @@ const [Erro, setErro] = useState('')
     //grava o valor no Historico
     setHistoricoValor(HistoricoValor + '=' + resultadoFinal)
 
+    // limpa o historico de numeros digitados
+    setNumerosDigitados([]);
+
+    // limpa o historico de operacoes digitadas
+    setOperacoes([]);
   }
 
   //Realiza o calculo da porcentagem
   function calculoPorcentagem() {
-    setErro ('');
-    if (NumerosDigitados.length === 0){
-      setErro ('Operação Invalida');
+    setErro('');
+    if (NumerosDigitados.length === 0) {
+      setErro('Operação Invalida');
       return;
     }
     //Ajusta o primeiro numero da conta porcentagem
@@ -298,7 +303,7 @@ const [Erro, setErro] = useState('')
     <CaixaApp>
       <AppHeader>
         <AppTitle>
-          CALCULADORA DO VINI 
+          CALCULADORA DO VINI
         </AppTitle>
 
         <Alerta tipo='danger'>
@@ -326,21 +331,21 @@ const [Erro, setErro] = useState('')
           //X = cada item da lista 'Numeros', um de cada vez em ordem.
           return (
             <Button
-              tipo = 'numeros'
+              tipo='numeros'
               Title={x}
               onClick={() => inserirNumeros(x)} />
           );
         })}
 
         {/*cria os diversos botões de ação da calculadora */}
-        <Button tipo = 'virgula' Title=',' onClick={() => inserirVirgula()} />
-        <Button tipo = 'somar' Title='+' onClick={() => prepararCalculo('+')} />
-        <Button tipo = 'subtrair' Title='-' onClick={() => prepararCalculo('-')} />
-        <Button tipo = 'multiplicar' Title='*' onClick={() => prepararCalculo('*')} />
-        <Button tipo = 'dividir' Title='/' onClick={() => prepararCalculo('/')} />
-        <Button tipo = 'porcentagem' Title='%' onClick={() => calculoPorcentagem()} />
-        <Button tipo = 'C'  Title='C' onClick={() => limparTela()} />
-        <Button tipo = 'igual'  Title='=' onClick={() => calcular2()} />
+        <Button tipo='virgula' Title=',' onClick={() => inserirVirgula()} />
+        <Button tipo='somar' Title='+' onClick={() => prepararCalculo('+')} />
+        <Button tipo='subtrair' Title='-' onClick={() => prepararCalculo('-')} />
+        <Button tipo='multiplicar' Title='*' onClick={() => prepararCalculo('*')} />
+        <Button tipo='dividir' Title='/' onClick={() => prepararCalculo('/')} />
+        <Button tipo='porcentagem' Title='%' onClick={() => calculoPorcentagem()} />
+        <Button tipo='C' Title='C' onClick={() => limparTela()} />
+        <Button tipo='igual' Title='=' onClick={() => calcular2()} />
       </ButtonContainer>
     </CaixaApp>
   );
