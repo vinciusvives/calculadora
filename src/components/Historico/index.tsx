@@ -14,7 +14,7 @@ interface IProps{
     const partesDotexto = valor.split(',');
     const parteInteira = partesDotexto [0];
     const parteFracional = partesDotexto [1];
-    if (parteInteira.length>3 && temPontohistorico == -1){
+    if (parteInteira.length >3 && temPontohistorico == -1){
 
       const textoEsquerda = parteInteira.substring(0,parteInteira.length-3);
       const textoDireita = parteInteira.substring(parteInteira.length-3);
@@ -23,6 +23,8 @@ interface IProps{
       setvalor (textoFinal)
       
     }
+   
+      
     //ajusta o zero quando for so zero
     const primeiroDigitohistorico = valor.substring (0,1)
     const textoZerohistorico = primeiroDigitohistorico =='0';
@@ -30,6 +32,7 @@ interface IProps{
       const textoSemzerohistorico = valor.substring (1)
       setvalor (textoSemzerohistorico)
     }
+    
     
 }, [valor]);
 

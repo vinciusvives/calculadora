@@ -1,13 +1,15 @@
 //Importando as Bibliotecas
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Button } from './components/Button';
 import { Visor } from './components/Visor';
 import { Historico } from './components/Historico';
-import { AppHeader, AppTitle, ButtonContainer, CaixaApp, CaixaTexto } from './styles';
+import { AppHeader, AppTitle, ButtonContainer, CaixaApp, CaixaTexto, CaixaVisivel, ControladorAltura } from './styles';
 import { Alerta } from './components/Alerta';
 
 //cria componente como o nome "App"
 const App: React.FC = () => {
+const ref = useRef<any>(null);
+
 
   // variavel que armazena o tipo de erro
   const [Erro, setErro] = useState('')
@@ -28,6 +30,16 @@ const App: React.FC = () => {
 
   //variavel do historico
   const [HistoricoValor, setHistoricoValor] = useState<string>('0');
+
+
+  const [Visivel, setVisivel ] = useState<boolean>(true);
+
+
+  const [Altura, setAltura] = useState<number>(0);
+
+  useEffect (()=>{
+    setAltura(ref!.current!.clientHeight);
+  }, [])
 
   //Função que insere os numeros na tela
   function inserirNumeros(numeroNovo: string) {
@@ -310,6 +322,12 @@ const App: React.FC = () => {
           {Erro}
         </Alerta>
 
+        <Button
+              tipo='numeros'
+              Title={'Esconder Calculadora'}
+              onClick={() =>setVisivel(!Visivel) }
+        />
+
         {/*Cria caixa delimita o histrico e visor */}
         <CaixaTexto>
 
@@ -322,6 +340,13 @@ const App: React.FC = () => {
           {/*final da caixa que delimita o historico e visor*/}
         </CaixaTexto>
       </AppHeader>
+      <ControladorAltura
+      altura = {Visivel?Altura:0}
+      >
+      <CaixaVisivel
+      altura = {Visivel?0 : Altura}
+      ref = {ref}
+      >  
       <ButtonContainer //Criando o container com os botões
       >
         {numeros.map((x: string, index: number) => {
@@ -347,9 +372,12 @@ const App: React.FC = () => {
         <Button tipo='C' Title='C' onClick={() => limparTela()} />
         <Button tipo='igual' Title='=' onClick={() => calcular2()} />
       </ButtonContainer>
+      </CaixaVisivel>
+      </ControladorAltura>
     </CaixaApp>
   );
 }
+
 
 // exporta o app para ser usar um outro arquivos 
 export default App;

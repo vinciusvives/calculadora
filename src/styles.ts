@@ -58,4 +58,20 @@ border: 2px solid white;
 font-size: 30px;
 text-align: center;
 margin-top: 4px;
-`
+`;
+
+interface IPropsControladorAltura {
+  altura:number;
+}
+
+export const ControladorAltura = styled.div < IPropsControladorAltura>`
+transition-duration: 0.5s;
+overflow: hidden;
+height: ${props => `${props.altura}px`}
+`;
+
+export const CaixaVisivel = styled.div <IPropsControladorAltura>`
+transition-duration: 0.5s;
+position: relative;
+top: ${props => `-${props.altura}px`}
+`;
