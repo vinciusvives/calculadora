@@ -1,14 +1,14 @@
 import styled, {css} from 'styled-components';
 
 interface IProps{
-  tipo:'igual'| 'C' | 'operacao' | 'virgula' | 'numeros'| 'somar'|'dividir'| 'multiplicar'|'subtrair'|'porcentagem'|'numero'/*|'grupooperacoes'*/
+  tipo:'igual'| 'C' | 'operacao' | 'virgula' | 'numeros'| 'somar'|'dividir'| 'multiplicar'|'subtrair'|'porcentagem'|'numero'|'grupooperacao'
 }
 const cores = {
   igual : css`
     color: #fff;
     background-color: rgb(25, 0, 255);
     border: 1px solid rgb(41, 169, 219);
-    cursor:pointer;
+    
     border-radius: 5px;
     //box-shadow: 0 9px #999;
     &:hover{
@@ -26,7 +26,7 @@ const cores = {
     background-color: rgb(253, 2, 2);
     border: 1px solid rgb(41, 169, 219);
     border-radius: 5px;
-    cursor:pointer;
+    
     font-size:13px;
     font-family:Verdana;
     font-weight:bold;
@@ -39,26 +39,50 @@ const cores = {
   background-color: rgb(250, 182, 94);
   border: 1px solid rgb(41, 169, 219);
   border-radius: 5px;
-  cursor:pointer;
+  
   &:hover{
     background-color: rgb(180, 178, 182);
   transition-duration: 0.5s;
   }
   `,
-  /*grupooperacao:css`
-  background-color: rgb(250, 182, 94);
-  border: 1px solid rgb(41, 169, 219);
-  border-radius: 5px;
-  cursor:pointer;
+  grupooperacao:css`
+  width: 50%;
+  float: right;
+  //min-width: 250px;
+  //display: inline-block;
+ // vertical-align: top
+  border:1px solid #25692A;
+  border-radius:10px;
+ // display:inline-block;
+  
+  font-family:Verdana;
+  font-weight:bold;
+  font-size:16px;
+  //padding:3px 6px;
+  //text-decoration:none;
+  background: #333;
+  //border-radius: 15px;
+  color: #ccc;
+  box-shadow: 0 0 10px 0 #3498db inset, 0 0 10px 4px #3498db;
+  width: 130px;
+  //height: 60px;
+  //border: 2px;
+  
+  transition-duration: 0.9s;
+  overflow: hidden;
+   
   &:hover{
-    background-color: rgb(180, 178, 182);
-  transition-duration: 0.5s;
-  }
-  `,*/
+  background: #338033;
+ 
+  color: #fff;
+  &:hover {
+  box-shadow: 0 0 10px 0 #3498db inset, 0 0 10px 4px #3498db;
+  }}
+  `,
   virgula:css`
   border: 1px solid rgb(41, 169, 219);
   border-radius: 5px;
-  cursor:pointer;
+  
   &:hover{
     background-color: rgb(129, 128, 129);
     transition-duration: 0.5s;
@@ -67,7 +91,7 @@ const cores = {
   numeros:css`
   border: 1px solid rgb(41, 169, 219);
   border-radius: 5px;
-  cursor:pointer;
+  
   &:hover{
     background-color: rgb(129, 128, 129);
     transition-duration: 0.5s;
@@ -76,7 +100,7 @@ const cores = {
   background-color: rgb(250, 182, 94);
   border: 1px solid rgb(41, 169, 219);
   border-radius: 15px;
-  cursor:pointer;
+  
   transition: .6s;
   font-family:Verdana;
   font-weight:bold;
@@ -93,7 +117,7 @@ const cores = {
   dividir:css`
   background-color: rgb(41, 169, 219);
   border: 1px solid rgb(250, 182, 94);
-  cursor:pointer;
+  
   border-radius: 15px;
   font-family:Verdana;
   font-weight:bold;
@@ -122,7 +146,7 @@ const cores = {
   multiplicar:css`
   color: #fff;
   height: 30px;
-  cursor: pointer;
+ 
   border: 1px solid rgb(41, 169, 219);
   border-radius: 5px;
   background: transparent;
@@ -166,7 +190,7 @@ const cores = {
   
   &:hover{
   //background: #338033;
-  cursor: pointer;
+  
   color: #fff;
   background: rgb(0,36,4);
   background: linear-gradient(90deg, rgba(0,36,4,1) 0%, rgba(24,121,9,1) 35%, rgba(10,255,0,1) 100%);
@@ -201,7 +225,7 @@ const cores = {
   
   &:hover{
   background: #338033;
-  cursor: pointer;
+  
   color: #fff;
   
   }
@@ -212,6 +236,8 @@ const cores = {
   }`,
 
   numero:css`
+  width: 50%;
+  float: left ;
   border:1px solid #25692A;
   border-radius:4px;
   display:inline-block;
@@ -223,7 +249,8 @@ const cores = {
   text-decoration:none;
   background: #333;
   //border-radius: 15px;
-  //color: #ccc;
+  color: #ccc;
+  box-shadow: 0 0 10px 0 #3498db inset, 0 0 10px 4px #3498db;
   width: 130px;
   height: 60px;
   //border: 2px;
@@ -231,9 +258,10 @@ const cores = {
   transition-duration: 0.9s;
   //overflow: hidden;
   
+  
   &:hover{
   background: #338033;
-  cursor: pointer;
+  
   color: #fff;
   &:hover {
   box-shadow: 0 0 10px 0 #3498db inset, 0 0 10px 4px #3498db;
@@ -249,6 +277,7 @@ width: 30px;
 height: 30px;
 margin: 5px;
 flex:auto;
+cursor: pointer;
 ${props=>cores[props.tipo]}
 `;
 

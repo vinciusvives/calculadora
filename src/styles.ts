@@ -18,7 +18,10 @@ display: flex;
 `;
 
 export const AppHeader = styled.header`
+//float: right;
+//display: inline-block;
 background-color: #282c34;
+flex-wrap: wrap;
 text-align: justify;
 min-height: 50vh;
 display: flex;
@@ -33,20 +36,43 @@ export const ButtonContainer = styled.div`
 width: 130px;
 flex-wrap: wrap;
 margin: 0 auto;
-border: 1px solid #000;
+border: 0px solid #000;
 align-items: center;
 justify-content:space-evenly;
 display:flex;
 `;
 
+export const ButtonContaineroperador = styled.div`
+width: 130px;
+flex-wrap: wrap;
+margin: 0 auto;
+border: 0px solid #000;
+align-items: center;
+justify-content:space-evenly;
+display:flex;
+flex-direction: row;
+`;
+
+export const ButtonContainerigual = styled.div`
+width: 130px;
+//flex-wrap: wrap;
+margin: 0 auto;
+border: 0px solid #000;
+align-items: center;
+//justify-content:space-evenly;
+display:flex;
+`;
+
 export const CaixaApp = styled.div`
- 
+width: 100%;
 text-align:left ;
-background-color: #282c34;
+//background-color: #282c34;
+
 `;
 
 export const AppTitle = styled.p`
-display: inline-block;
+//float: right;
+//display: inline-block;
 color: white;
 text-shadow: 2px 2px 5px #000000;
 border-radius: 4px;
@@ -56,7 +82,7 @@ background: white;
 border: 2px solid white;
 //color: rgb(88, 228, 24);
 font-size: 30px;
-text-align: center;
+//text-align: center;
 margin-top: 4px;
 `;
 
@@ -75,3 +101,4 @@ transition-duration: 0.5s;
 position: relative;
 top: ${props => `-${props.altura}px`}
 `;
+

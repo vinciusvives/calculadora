@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Button } from './components/Button';
 import { Visor } from './components/Visor';
 import { Historico } from './components/Historico';
-import { AppHeader, AppTitle, ButtonContainer, CaixaApp, CaixaTexto, CaixaVisivel, ControladorAltura } from './styles';
+import { AppHeader, AppTitle, ButtonContainer, ButtonContainerigual, ButtonContaineroperador, CaixaApp, CaixaTexto, CaixaVisivel, ControladorAltura } from './styles';
 import { Alerta } from './components/Alerta';
 
 //cria componente como o nome "App"
@@ -33,13 +33,22 @@ const ref = useRef<any>(null);
 
 
   const [Visivel, setVisivel ] = useState<boolean>(true);
-
-
+  
   const [Altura, setAltura] = useState<number>(0);
-
+  
   useEffect (()=>{
     setAltura(ref!.current!.clientHeight);
   }, [])
+
+  const [Visivel2, setVisivel2 ] = useState<boolean>(true);
+
+  const [Altura2, setAltura2] = useState<number>(0);
+
+  useEffect (()=>{
+    setAltura2(ref!.current!.clientHeight);
+  }, [])
+
+
 
   //Função que insere os numeros na tela
   function inserirNumeros(numeroNovo: string) {
@@ -325,6 +334,8 @@ const ref = useRef<any>(null);
          {/* Botão para Esconder bloco  */}
         <Button tipo='numero' Title={'Esconder Calculadora'} onClick={() =>setVisivel(!Visivel) }
         />
+        <Button tipo='grupooperacao' Title={'Esconder operacoes'} onClick={() =>setVisivel2(!Visivel2) } 
+        />
 
         {/*Cria caixa delimita o histrico e visor */}
         <CaixaTexto>
@@ -364,20 +375,57 @@ const ref = useRef<any>(null);
 
         
         {/*cria os diversos botões de ação da calculadora */}
+        
         <Button tipo='virgula' Title=',' onClick={() => inserirVirgula()} />
-        {/*<Button tipo='grupooperacoes' Title={'Esconder operacoes'} onClick={() =>setVisivel(!Visivel) } />*/}
+
+        <ControladorAltura
+          altura= {Visivel2?Altura2:0}
+        >
+          <CaixaVisivel
+          altura = {Visivel2?0: Altura2}
+          ref = {ref}
+        >  
+         <ButtonContaineroperador //Criando o container com os botões
+         >
         <Button tipo='somar' Title='+' onClick={() => prepararCalculo('+')} />
         <Button tipo='subtrair' Title='-' onClick={() => prepararCalculo('-')} />
         <Button tipo='multiplicar' Title='*' onClick={() => prepararCalculo('*')} />
         <Button tipo='dividir' Title='/' onClick={() => prepararCalculo('/')} />
         <Button tipo='porcentagem' Title='%' onClick={() => calculoPorcentagem()} />
+        
+        </ButtonContaineroperador>
+        </CaixaVisivel>
+        </ControladorAltura>
+
+        
+        {/*<ButtonContainerigual
+         >
         <Button tipo='C' Title='C' onClick={() => limparTela()} />
         <Button tipo='igual' Title='=' onClick={() => calcular2()} />
+        
+        </ButtonContainerigual>*/}
+        
+        
+        
         
       </ButtonContainer>
       </CaixaVisivel>
       </ControladorAltura>
+
+      
+
+           <ButtonContainerigual
+           >
+           <Button tipo='C' Title='C' onClick={() => limparTela()} />
+           <Button tipo='igual' Title='=' onClick={() => calcular2()} />
+        
+          </ButtonContainerigual>
+
+        {/*<Button tipo='C' Title='C' onClick={() => limparTela()} />
+        <Button tipo='igual' Title='=' onClick={() => calcular2()} />*/}
+        
     </CaixaApp>
+    
   );
 }
 
