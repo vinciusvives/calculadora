@@ -322,10 +322,8 @@ const ref = useRef<any>(null);
           {Erro}
         </Alerta>
 
-        <Button
-              tipo='numeros'
-              Title={'Esconder Calculadora'}
-              onClick={() =>setVisivel(!Visivel) }
+         {/* Botão para Esconder bloco  */}
+        <Button tipo='numero' Title={'Esconder Calculadora'} onClick={() =>setVisivel(!Visivel) }
         />
 
         {/*Cria caixa delimita o histrico e visor */}
@@ -340,6 +338,8 @@ const ref = useRef<any>(null);
           {/*final da caixa que delimita o historico e visor*/}
         </CaixaTexto>
       </AppHeader>
+
+      {/* Esconder bloco  */}
       <ControladorAltura
       altura = {Visivel?Altura:0}
       >
@@ -362,8 +362,10 @@ const ref = useRef<any>(null);
           );
         })}
 
+        
         {/*cria os diversos botões de ação da calculadora */}
         <Button tipo='virgula' Title=',' onClick={() => inserirVirgula()} />
+        {/*<Button tipo='grupooperacoes' Title={'Esconder operacoes'} onClick={() =>setVisivel(!Visivel) } />*/}
         <Button tipo='somar' Title='+' onClick={() => prepararCalculo('+')} />
         <Button tipo='subtrair' Title='-' onClick={() => prepararCalculo('-')} />
         <Button tipo='multiplicar' Title='*' onClick={() => prepararCalculo('*')} />
@@ -371,6 +373,7 @@ const ref = useRef<any>(null);
         <Button tipo='porcentagem' Title='%' onClick={() => calculoPorcentagem()} />
         <Button tipo='C' Title='C' onClick={() => limparTela()} />
         <Button tipo='igual' Title='=' onClick={() => calcular2()} />
+        
       </ButtonContainer>
       </CaixaVisivel>
       </ControladorAltura>

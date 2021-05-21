@@ -1,13 +1,14 @@
 import styled, {css} from 'styled-components';
 
 interface IProps{
-  tipo:'igual'| 'C' | 'operacao' | 'virgula' | 'numeros'| 'somar'|'dividir'| 'multiplicar'|'subtrair'|'porcentagem'
+  tipo:'igual'| 'C' | 'operacao' | 'virgula' | 'numeros'| 'somar'|'dividir'| 'multiplicar'|'subtrair'|'porcentagem'|'numero'/*|'grupooperacoes'*/
 }
 const cores = {
   igual : css`
     color: #fff;
     background-color: rgb(25, 0, 255);
     border: 1px solid rgb(41, 169, 219);
+    cursor:pointer;
     border-radius: 5px;
     //box-shadow: 0 9px #999;
     &:hover{
@@ -25,6 +26,7 @@ const cores = {
     background-color: rgb(253, 2, 2);
     border: 1px solid rgb(41, 169, 219);
     border-radius: 5px;
+    cursor:pointer;
     font-size:13px;
     font-family:Verdana;
     font-weight:bold;
@@ -37,14 +39,26 @@ const cores = {
   background-color: rgb(250, 182, 94);
   border: 1px solid rgb(41, 169, 219);
   border-radius: 5px;
+  cursor:pointer;
   &:hover{
     background-color: rgb(180, 178, 182);
   transition-duration: 0.5s;
   }
   `,
+  /*grupooperacao:css`
+  background-color: rgb(250, 182, 94);
+  border: 1px solid rgb(41, 169, 219);
+  border-radius: 5px;
+  cursor:pointer;
+  &:hover{
+    background-color: rgb(180, 178, 182);
+  transition-duration: 0.5s;
+  }
+  `,*/
   virgula:css`
   border: 1px solid rgb(41, 169, 219);
   border-radius: 5px;
+  cursor:pointer;
   &:hover{
     background-color: rgb(129, 128, 129);
     transition-duration: 0.5s;
@@ -53,6 +67,7 @@ const cores = {
   numeros:css`
   border: 1px solid rgb(41, 169, 219);
   border-radius: 5px;
+  cursor:pointer;
   &:hover{
     background-color: rgb(129, 128, 129);
     transition-duration: 0.5s;
@@ -61,6 +76,7 @@ const cores = {
   background-color: rgb(250, 182, 94);
   border: 1px solid rgb(41, 169, 219);
   border-radius: 15px;
+  cursor:pointer;
   transition: .6s;
   font-family:Verdana;
   font-weight:bold;
@@ -77,6 +93,7 @@ const cores = {
   dividir:css`
   background-color: rgb(41, 169, 219);
   border: 1px solid rgb(250, 182, 94);
+  cursor:pointer;
   border-radius: 15px;
   font-family:Verdana;
   font-weight:bold;
@@ -194,6 +211,37 @@ const cores = {
     
   }`,
 
+  numero:css`
+  border:1px solid #25692A;
+  border-radius:4px;
+  display:inline-block;
+  cursor:pointer;
+  font-family:Verdana;
+  font-weight:bold;
+  font-size:16px;
+  padding:3px 6px;
+  text-decoration:none;
+  background: #333;
+  //border-radius: 15px;
+  //color: #ccc;
+  width: 130px;
+  height: 60px;
+  //border: 2px;
+  //border-radius: 4px;
+  transition-duration: 0.9s;
+  //overflow: hidden;
+  
+  &:hover{
+  background: #338033;
+  cursor: pointer;
+  color: #fff;
+  &:hover {
+  box-shadow: 0 0 10px 0 #3498db inset, 0 0 10px 4px #3498db;
+  }}
+  
+  `,
+
+
 }
 
 export const CaixaBotao = styled.button<IProps>`
@@ -202,6 +250,8 @@ height: 30px;
 margin: 5px;
 flex:auto;
 ${props=>cores[props.tipo]}
-`
+`;
 
-;
+
+
+
