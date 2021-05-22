@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Button } from './components/Button';
 import { Visor } from './components/Visor';
 import { Historico } from './components/Historico';
-import { AppHeader, AppTitle, ButtonContainer, ButtonContainerigual, ButtonContaineroperador, CaixaApp, CaixaTexto, CaixaVisivel, ControladorAltura } from './styles';
+import { AppHeader, AppTitle, ButtonContainer, ButtonContainerigual, ButtonContaineroperador, CaixaApp, CaixaTexto, CaixaVisivel, ControladorComprimento, ControladorAltura   } from './styles';
 import { Alerta } from './components/Alerta';
 
 //cria componente como o nome "App"
@@ -37,7 +37,7 @@ const ref = useRef<any>(null);
   const [Altura, setAltura] = useState<number>(0);
   
   useEffect (()=>{
-    setAltura(ref!.current!.clientHeight);
+    setAltura(ref!.current!.clientwidth);
   }, [])
 
   const [Visivel2, setVisivel2 ] = useState<boolean>(true);
@@ -45,10 +45,10 @@ const ref = useRef<any>(null);
   const [Altura2, setAltura2] = useState<number>(0);
 
   useEffect (()=>{
-    setAltura2(ref!.current!.clientHeight);
+    setAltura2(ref!.current!.clientWidth);
   }, [])
 
-
+  
 
   //Função que insere os numeros na tela
   function inserirNumeros(numeroNovo: string) {
@@ -332,10 +332,10 @@ const ref = useRef<any>(null);
         </Alerta>
 
          {/* Botão para Esconder bloco  */}
-        <Button tipo='numero' Title={'Esconder Calculadora'} onClick={() =>setVisivel(!Visivel) }
-        />
-        <Button tipo='grupooperacao' Title={'Esconder operacoes'} onClick={() =>setVisivel2(!Visivel2) } 
-        />
+        <Button tipo='numero' Title={'Esconder Calculadora'} onClick={() =>setVisivel(!Visivel) }/>
+        
+        {/*<Button tipo='grupooperacao' Title={'Ocultar Operador'} onClick={() =>setVisivel2(!Visivel2) } 
+        />*/}
 
         {/*Cria caixa delimita o histrico e visor */}
         <CaixaTexto>
@@ -351,8 +351,8 @@ const ref = useRef<any>(null);
       </AppHeader>
 
       {/* Esconder bloco  */}
-      <ControladorAltura
-      altura = {Visivel?Altura:0}
+      <ControladorComprimento 
+      altura = {Visivel?Altura:1}
       >
       <CaixaVisivel
       altura = {Visivel?0 : Altura}
@@ -377,14 +377,16 @@ const ref = useRef<any>(null);
         {/*cria os diversos botões de ação da calculadora */}
         
         <Button tipo='virgula' Title=',' onClick={() => inserirVirgula()} />
-
-        <ControladorAltura
-          altura= {Visivel2?Altura2:0}
+        <Button tipo='grupooperacao' Title={'Ocultar Operadores'} onClick={() =>setVisivel2(!Visivel2) } 
+        />
+        <ControladorComprimento 
+          altura= {Visivel2?Altura2:-1}
         >
           <CaixaVisivel
           altura = {Visivel2?0: Altura2}
           ref = {ref}
         >  
+        
          <ButtonContaineroperador //Criando o container com os botões
          >
         <Button tipo='somar' Title='+' onClick={() => prepararCalculo('+')} />
@@ -395,31 +397,31 @@ const ref = useRef<any>(null);
         
         </ButtonContaineroperador>
         </CaixaVisivel>
-        </ControladorAltura>
+        </ControladorComprimento >
 
         
-        {/*<ButtonContainerigual
+        <ButtonContainerigual
          >
         <Button tipo='C' Title='C' onClick={() => limparTela()} />
         <Button tipo='igual' Title='=' onClick={() => calcular2()} />
         
-        </ButtonContainerigual>*/}
+        </ButtonContainerigual>
         
         
         
         
       </ButtonContainer>
       </CaixaVisivel>
-      </ControladorAltura>
+      </ControladorComprimento >
 
       
 
-           <ButtonContainerigual
+           {/*<ButtonContainerigual
            >
            <Button tipo='C' Title='C' onClick={() => limparTela()} />
            <Button tipo='igual' Title='=' onClick={() => calcular2()} />
         
-          </ButtonContainerigual>
+           </ButtonContainerigual>*/}
 
         {/*<Button tipo='C' Title='C' onClick={() => limparTela()} />
         <Button tipo='igual' Title='=' onClick={() => calcular2()} />*/}

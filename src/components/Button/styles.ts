@@ -8,7 +8,8 @@ const cores = {
     color: #fff;
     background-color: rgb(25, 0, 255);
     border: 1px solid rgb(41, 169, 219);
-    
+    width: 30px;
+    height: 30px;
     border-radius: 5px;
     //box-shadow: 0 9px #999;
     &:hover{
@@ -26,7 +27,8 @@ const cores = {
     background-color: rgb(253, 2, 2);
     border: 1px solid rgb(41, 169, 219);
     border-radius: 5px;
-    
+    width: 30px;
+    height: 30px;
     font-size:13px;
     font-family:Verdana;
     font-weight:bold;
@@ -39,16 +41,19 @@ const cores = {
   background-color: rgb(250, 182, 94);
   border: 1px solid rgb(41, 169, 219);
   border-radius: 5px;
+  width: 30px;
+  height: 30px;
   
   &:hover{
     background-color: rgb(180, 178, 182);
   transition-duration: 0.5s;
+  
   }
   `,
   grupooperacao:css`
-  width: 50%;
+  //width: 50%;
   float: right;
-  //min-width: 250px;
+  in-width: 130px;
   //display: inline-block;
  // vertical-align: top
   border:1px solid #25692A;
@@ -57,7 +62,7 @@ const cores = {
   
   font-family:Verdana;
   font-weight:bold;
-  font-size:16px;
+  font-size:14px;
   //padding:3px 6px;
   //text-decoration:none;
   background: #333;
@@ -65,7 +70,7 @@ const cores = {
   color: #ccc;
   box-shadow: 0 0 10px 0 #3498db inset, 0 0 10px 4px #3498db;
   width: 130px;
-  //height: 60px;
+  //width: 60px;
   //border: 2px;
   
   transition-duration: 0.9s;
@@ -82,7 +87,8 @@ const cores = {
   virgula:css`
   border: 1px solid rgb(41, 169, 219);
   border-radius: 5px;
-  
+  width: 30px;
+  height: 30px;
   &:hover{
     background-color: rgb(129, 128, 129);
     transition-duration: 0.5s;
@@ -91,7 +97,8 @@ const cores = {
   numeros:css`
   border: 1px solid rgb(41, 169, 219);
   border-radius: 5px;
-  
+  width: 30px;
+  height: 30px;
   &:hover{
     background-color: rgb(129, 128, 129);
     transition-duration: 0.5s;
@@ -100,7 +107,8 @@ const cores = {
   background-color: rgb(250, 182, 94);
   border: 1px solid rgb(41, 169, 219);
   border-radius: 15px;
-  
+  width: 30px;
+  height: 30px;
   transition: .6s;
   font-family:Verdana;
   font-weight:bold;
@@ -117,7 +125,8 @@ const cores = {
   dividir:css`
   background-color: rgb(41, 169, 219);
   border: 1px solid rgb(250, 182, 94);
-  
+  width: 30px;
+  height: 30px;
   border-radius: 15px;
   font-family:Verdana;
   font-weight:bold;
@@ -144,9 +153,9 @@ const cores = {
   
   `,
   multiplicar:css`
-  color: #fff;
+  color: black;
   height: 30px;
- 
+  font-weight:bold;
   border: 1px solid rgb(41, 169, 219);
   border-radius: 5px;
   background: transparent;
@@ -206,8 +215,9 @@ const cores = {
   
   border:1px solid #25692A;
   border-radius:4px;
-  display:inline-block;
-  cursor:pointer;
+  //display:inline-block;
+  width: 30px;
+  height: 30px;
   font-family:Verdana;
   font-weight:bold;
   font-size:13px;
@@ -216,12 +226,11 @@ const cores = {
   background: #333;
   //border-radius: 15px;
   //color: #ccc;
-  //width: 30px;
-  //height: 30px;
+ 
   //border: 2px;
   //border-radius: 4px;
   transition-duration: 0.6s;
-  //overflow: hidden;
+  overflow: hidden;
   
   &:hover{
   background: #338033;
@@ -236,27 +245,23 @@ const cores = {
   }`,
 
   numero:css`
-  width: 50%;
+  Width: 16%;
+ 
   float: left ;
   border:1px solid #25692A;
   border-radius:4px;
-  display:inline-block;
-  cursor:pointer;
   font-family:Verdana;
   font-weight:bold;
   font-size:16px;
   padding:3px 6px;
   text-decoration:none;
   background: #333;
-  //border-radius: 15px;
+  
   color: #ccc;
-  box-shadow: 0 0 10px 0 #3498db inset, 0 0 10px 4px #3498db;
-  width: 130px;
-  height: 60px;
-  //border: 2px;
-  //border-radius: 4px;
+  box-shadow: 0 0 5px 0 #3498db inset, 0 0 10px 4px #3498db;
+   
   transition-duration: 0.9s;
-  //overflow: hidden;
+  overflow: hidden;
   
   
   &:hover{
@@ -273,11 +278,11 @@ const cores = {
 }
 
 export const CaixaBotao = styled.button<IProps>`
-width: 30px;
-height: 30px;
-margin: 5px;
+
+margin: 4px;
 flex:auto;
 cursor: pointer;
+box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 3px 10px 0 rgba(0,0,0,0.20);
 ${props=>cores[props.tipo]}
 `;
 

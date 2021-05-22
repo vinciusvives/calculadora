@@ -18,8 +18,8 @@ display: flex;
 `;
 
 export const AppHeader = styled.header`
-//float: right;
-//display: inline-block;
+
+display: inline-block;
 background-color: #282c34;
 flex-wrap: wrap;
 text-align: justify;
@@ -30,6 +30,7 @@ align-items: center;
 justify-content: center;
 font-size: calc(10px + 2vmin);
 color: white;
+
 `;
 
 export const ButtonContainer = styled.div`
@@ -40,6 +41,9 @@ border: 0px solid #000;
 align-items: center;
 justify-content:space-evenly;
 display:flex;
+cursor:pointer;
+box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+
 `;
 
 export const ButtonContaineroperador = styled.div`
@@ -55,7 +59,7 @@ flex-direction: row;
 
 export const ButtonContainerigual = styled.div`
 width: 130px;
-//flex-wrap: wrap;
+flex-wrap: wrap;
 margin: 0 auto;
 border: 0px solid #000;
 align-items: center;
@@ -66,8 +70,8 @@ display:flex;
 export const CaixaApp = styled.div`
 width: 100%;
 text-align:left ;
-//background-color: #282c34;
 
+//background-color: #282c34;
 `;
 
 export const AppTitle = styled.p`
@@ -90,11 +94,18 @@ interface IPropsControladorAltura {
   altura:number;
 }
 
-export const ControladorAltura = styled.div < IPropsControladorAltura>`
+export const ControladorAltura  = styled.div < IPropsControladorAltura>`
 transition-duration: 0.5s;
 overflow: hidden;
-height: ${props => `${props.altura}px`}
+width: ${props => `${props.altura}px`}
 `;
+
+export const ControladorComprimento  = styled.div < IPropsControladorAltura>`
+transition-duration: 0.5s;
+overflow: hidden;
+width: ${props => `${props.altura}px`}
+`;
+
 
 export const CaixaVisivel = styled.div <IPropsControladorAltura>`
 transition-duration: 0.5s;
