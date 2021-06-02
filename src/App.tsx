@@ -35,17 +35,18 @@ const ref = useRef<any>(null);
   const [Visivel, setVisivel ] = useState<boolean>(true);
   
   const [Altura, setAltura] = useState<number>(0);
-  
+
+    
   useEffect (()=>{
-    setAltura(ref!.current!.clientwidth);
+    setAltura(ref!.current!.clientWidth);
   }, [])
 
   const [Visivel2, setVisivel2 ] = useState<boolean>(true);
 
-  const [Altura2, setAltura2] = useState<number>(0);
+  const [Comprimento, setComprimento] = useState<number>(0);
 
   useEffect (()=>{
-    setAltura2(ref!.current!.clientWidth);
+    setComprimento(ref!.current!.clientWidth);
   }, [])
 
   
@@ -352,10 +353,10 @@ const ref = useRef<any>(null);
 
       {/* Esconder bloco  */}
       <ControladorComprimento 
-      altura = {Visivel?Altura:1}
+      comprimento = {Visivel?Comprimento:1}
       >
       <CaixaVisivel
-      altura = {Visivel?0 : Altura}
+      altura = {Visivel?0 : Comprimento}
       ref = {ref}
       >  
       <ButtonContainer //Criando o container com os botões
@@ -380,10 +381,10 @@ const ref = useRef<any>(null);
         <Button tipo='grupooperacao' Title={'Ocultar Operadores'} onClick={() =>setVisivel2(!Visivel2) } 
         />
         <ControladorComprimento 
-          altura= {Visivel2?Altura2:-1}
+          comprimento= {Visivel2?Comprimento:0}
         >
           <CaixaVisivel
-          altura = {Visivel2?0: Altura2}
+          altura = {Visivel2?0: Comprimento}
           ref = {ref}
         >  
         

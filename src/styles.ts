@@ -19,7 +19,7 @@ display: flex;
 
 export const AppHeader = styled.header`
 
-display: inline-block;
+//display: inline-block;
 background-color: #282c34;
 flex-wrap: wrap;
 text-align: justify;
@@ -27,9 +27,10 @@ min-height: 50vh;
 display: flex;
 flex-direction: column;
 align-items: center;
-justify-content: center;
+justify-content: space-between;
 font-size: calc(10px + 2vmin);
 color: white;
+
 
 `;
 
@@ -100,16 +101,24 @@ overflow: hidden;
 width: ${props => `${props.altura}px`}
 `;
 
-export const ControladorComprimento  = styled.div < IPropsControladorAltura>`
-transition-duration: 0.5s;
-overflow: hidden;
-width: ${props => `${props.altura}px`}
-`;
-
 
 export const CaixaVisivel = styled.div <IPropsControladorAltura>`
 transition-duration: 0.5s;
 position: relative;
-top: ${props => `-${props.altura}px`}
+right: ${props => `-${props.altura}px`}
 `;
 
+interface IPropsControladorComprimento {
+  comprimento:number;
+}
+{/*export const ControladorComprimento  = styled.div < IPropsControladorComprimento>`
+transition-duration: 0.5s;
+overflow: hidden;
+width: ${props => `${props.comprimento}px`}
+`;
+*/}
+export const ControladorComprimento  = styled.div < IPropsControladorComprimento>`
+transition-duration: 0.5s;
+overflow: hidden;
+right: ${props => `${props.comprimento}px`}
+`;

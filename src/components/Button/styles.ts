@@ -51,6 +51,7 @@ const cores = {
   }
   `,
   grupooperacao:css`
+  flex: 50px;
   //width: 50%;
   float: right;
   in-width: 130px;
@@ -245,8 +246,10 @@ const cores = {
   }`,
 
   numero:css`
-  Width: 16%;
- 
+  flex: 0;
+  
+  Width: 120px;
+  height: 90px;
   float: left ;
   border:1px solid #25692A;
   border-radius:4px;
@@ -256,17 +259,12 @@ const cores = {
   padding:3px 6px;
   text-decoration:none;
   background: #333;
-  
   color: #ccc;
   box-shadow: 0 0 5px 0 #3498db inset, 0 0 10px 4px #3498db;
-   
   transition-duration: 0.9s;
   overflow: hidden;
-  
-  
   &:hover{
   background: #338033;
-  
   color: #fff;
   &:hover {
   box-shadow: 0 0 10px 0 #3498db inset, 0 0 10px 4px #3498db;
