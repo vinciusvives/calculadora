@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+import Calculadora from './telas/Calculadora';
+
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Calculadora />
   </React.StrictMode>,
   document.getElementById('root')
 );
